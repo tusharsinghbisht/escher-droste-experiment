@@ -172,6 +172,47 @@ In short:
 | Prepared recursive image | Built into the source and continued by the sampler | Matching recursive boundaries, subject to raster interpolation |
 | Ordinary stock image | Imposed by the sampler's periodic extension | Visible joins where unrelated source boundaries meet |
 
+## 4. Reverse the generated spiral
+
+`revert_escher.py` reconstructs the pre-spiral nested image from the spiral
+raster and saved numeric parameters. It includes the upright view correction.
+The original source image is **not used to reconstruct pixels**.
+
+```powershell
+.venv\Scripts\python.exe revert_escher.py --reference demo2_nested_quarter.png
+```
+
+- [Recovered 4096-square nested image](reverted_output/03_reverted.png)
+- [Inverse transformation grid](reverted_output/04_inverse_grid.png)
+- [Reference comparison](reverted_output/reference_comparison.jpg)
+
+`--reference` is optional and only measures/illustrates differences after
+reconstruction. For this run, the 1024-square comparison had mean absolute RGB
+error **0.58/255** and PSNR **46.27 dB**. These preview-scale measurements do not
+imply exact full-resolution pixel recovery; repeated resampling is lossy.
+
+## 5. Unwarp Escher's original Print Gallery
+
+```powershell
+.venv\Scripts\python.exe run_print_gallery.py
+.venv\Scripts\python.exe run_print_gallery.py --literal
+```
+
+This local experiment uses the museum's original 1956 print, with the published
+256:1 scale period rather than our 4:1 period. It is an **approximate
+complex-power unwarping**, not the full de Smit-Lenstra hand-grid correction or
+their completed-center reconstruction. The artist's blank center cannot be
+recovered from the scan alone.
+
+Local images and intermediate stages are saved in
+`print_gallery_experiment/inverse/` and `print_gallery_experiment/inverse_literal/`.
+Literal mode leaves off-scan samples gray; periodic mode reuses observed content
+at model-equivalent repeats. The original artwork and these local derivatives
+are **gitignored** to avoid accidental redistribution of copyrighted images.
+
+See [INVERSE.md](INVERSE.md) for the inverse formula, calibration limitations,
+source credits, output descriptions, and reproduction options.
+
 ## Setup
 
 Python **3.11** was used. Dependencies are listed in `requirements.txt`:
@@ -217,10 +258,13 @@ the **assumed radial period**, not a real nested copy present in that image.
 
 - `create_nested.py`: reconstructs the wall, resizes the frame, and nests copies.
 - `create_escher.py`: reusable complex-plane renderer and 2x2 grid generator.
-- `test_create_escher.py`: eleven tests for log-radius and angular periodicity,
-  spiral closure, sampling, singularity handling, grid order, validation,
-  final-view phase equivalence, and upright landmark alignment.
+- `revert_escher.py`: inverse resampling from the supplied spiral and metadata.
+- `run_print_gallery.py`: local-only approximate unwarping of the original print.
+- `test_create_escher.py`, `test_revert_escher.py`, `test_print_gallery.py`:
+  **21 tests** covering forward/inverse geometry, periodicity, view corrections,
+  raster-only recovery, coverage, validation, and HTTPS-only download behavior.
 - `ESCHER.md`: detailed notes on the complex-plane transform.
+- `INVERSE.md`: inverse-transform math and original Print Gallery experiment.
 - `escher_output/`: recursive-source results.
 - `stock_experiment/`: ordinary-stock-photo source and results.
 

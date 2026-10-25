@@ -8,3 +8,5 @@ escher_upright_preview/
 .env
 .env.*
 !.env.example
+# Copyrighted Escher artwork and local derivatives: do not publish by accident.
+print_gallery_experiment/

@@ -1,0 +1,21 @@
+{
+  "spiral_input": "D:\\timepass\\escher\\escher_output\\03_escher.png",
+  "output_size": [
+    4096,
+    4096
+  ],
+  "repeat_extension": true,
+  "samples_per_pixel": 4,
+  "raster_coverage_fraction": 1.0,
+  "original_image_used_for_reconstruction": false,
+  "formula": "w_spiral = c*(w_source-q)-d; sample supplied spiral at exp(w_spiral)",
+  "limitations": "Raster resampling is lossy; blank artwork regions and nonperiodic source data cannot be recovered exactly.",
+  "reference_comparison": {
+    "comparison_size": [
+      1024,
+      1024
+    ],
+    "mean_absolute_rgb_error": 0.5799786448478699,
+    "psnr_db": 46.2665796475539
+  }
+}
