@@ -1,0 +1,49 @@
+{
+  "input": "D:\\timepass\\escher\\stock_experiment\\input_4096.png",
+  "input_size": [
+    4096,
+    4096
+  ],
+  "final_size": [
+    4096,
+    4096
+  ],
+  "log_image_size": [
+    4096,
+    4096
+  ],
+  "source_outer_inner_ratio": 4.0,
+  "fixed_point_pixel_edges": [
+    2048.0,
+    2048.0
+  ],
+  "log_reference_radius": 4096,
+  "log_window": {
+    "real": [
+      -6.283185307179586,
+      0
+    ],
+    "imaginary": [
+      -3.141592653589793,
+      3.141592653589793
+    ]
+  },
+  "turns": 1,
+  "forward_log_multiplier": [
+    0.9535796764545919,
+    0.2103936242079302
+  ],
+  "inverse_log_multiplier": [
+    1.0,
+    -0.2206356001526516
+  ],
+  "log_rotation_degrees": 12.44214987534933,
+  "log_scale_correction": 0.9765140431425408,
+  "spiral_repeat_scale": 3.7506986464423724,
+  "spiral_repeat_rotation_degrees": 16.711316476346926,
+  "phase_periods": 0.0,
+  "source_rotation_degrees": 0.0,
+  "samples_per_pixel": 4,
+  "pipeline": "log(z) -> c*log(z) -> exp(c*log(z)); rendered by inverse mapping",
+  "periodic_extension": "Samples fold into the rectangular outer-minus-inner source shell."
+}
